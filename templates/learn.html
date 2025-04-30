@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Learning Platform | Learn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --info: #560bad;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #e9ecef 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .active {
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+        
+        .page-transitions {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .lesson-image {
+            width: 100%;
+            height: 180px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        
+        .lesson-content {
+            padding: 1.5rem;
+        }
+        
+        .lesson-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .lesson-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="logo">
+                <i class="fas fa-american-sign-language-interpreting"></i>
+                ASL Learning
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/learn" class="nav-link active">Learn</a></li>
+                <li><a href="/practice" class="nav-link">Practice</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container page-transitions">
+        <header>
+            <h1>Learn American Sign Language</h1>
+            <p class="subtitle">Comprehensive tutorials for learning ASL</p>
+        </header>
+        
+        <div class="card">
+            <div class="card-header">Get Started with ASL</div>
+            <div class="card-body">
+                <p>American Sign Language (ASL) is a complete, natural language that has the same linguistic properties as spoken languages, with grammar that differs from English. ASL is expressed by movements of the hands and face.</p>
+                <p style="margin-top: 1rem;">Start with our beginner lessons below and gradually build your skills.</p>
+            </div>
+        </div>
+        
+        <div class="lessons-grid">
+            <div class="lesson-card">
+                <div class="lesson-image">A</div>
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Alphabet Basics (A-G)</h3>
+                    <p class="lesson-description">Learn how to sign the first seven letters of the alphabet. Perfect for beginners!</p>
+                    <a href="#" class="btn btn-sm">View Lesson <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="lesson-card">
+                <div class="lesson-image">H</div>
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Alphabet Continued (H-N)</h3>
+                    <p class="lesson-description">Continue your alphabet journey with the next seven letters.</p>
+                    <a href="#" class="btn btn-sm">View Lesson <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="lesson-card">
+                <div class="lesson-image">O</div>
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Completing the Alphabet (O-Z)</h3>
+                    <p class="lesson-description">Finish learning the ASL alphabet with the remaining letters.</p>
+                    <a href="#" class="btn btn-sm">View Lesson <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="lesson-card">
+                <div class="lesson-image"><i class="fas fa-hand-pointer"></i></div>
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Common Greetings</h3>
+                    <p class="lesson-description">Learn how to introduce yourself and greet others in ASL.</p>
+                    <a href="#" class="btn btn-sm">View Lesson <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="lesson-card">
+                <div class="lesson-image"><i class="fas fa-question-circle"></i></div>
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Asking Questions</h3>
+                    <p class="lesson-description">Learn how to form questions and express curiosity in ASL.</p>
+                    <a href="#" class="btn btn-sm">View Lesson <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="lesson-card">
+                <div class="lesson-image"><i class="fas fa-comments"></i></div>
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Simple Conversations</h3>
+                    <p class="lesson-description">Put your skills to the test with guided conversation practice.</p>
+                    <a href="#" class="btn btn-sm">View Lesson <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 ASL Recognition Platform | Created to help people learn American Sign Language</p>
+    </footer>
+
+    <script>
+        // Active navigation highlight
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLocation = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentLocation) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+        

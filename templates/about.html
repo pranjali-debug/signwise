@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Learning Platform | About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --info: #560bad;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #e9ecef 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .active {
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+        
+        .page-transitions {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .about-section {
+            line-height: 1.8;
+        }
+        
+        .about-section p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-section h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-badge {
+            background: #f0f0f0;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        footer {
+            background: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="logo">
+                <i class="fas fa-american-sign-language-interpreting"></i>
+                ASL Learning
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/learn" class="nav-link">Learn</a></li>
+                <li><a href="/practice" class="nav-link">Practice</a></li>
+                <li><a href="/about" class="nav-link active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container page-transitions">
+        <header>
+            <h1>About ASL Recognition Platform</h1>
+            <p class="subtitle">Learn about our project and technology</p>
+        </header>
+        
+        <div class="card">
+            <div class="card-header">Our Mission</div>
+            <div class="card-body about-section">
+                <p>The ASL Recognition Platform was created with the mission to make American Sign Language learning accessible to everyone. By leveraging modern technology, we aim to bridge communication gaps and promote inclusivity.</p>
+                
+                <p>This tool uses computer vision and machine learning to recognize hand gestures in real-time, providing immediate feedback to learners. Our goal is to help users develop ASL skills in an interactive and engaging way.</p>
+                
+                <h2>Technology Stack</h2>
+                <p>Our platform is built using cutting-edge technologies:</p>
+                
+                <div class="tech-stack">
+                    <div class="tech-badge">
+                        <i class="fab fa-python"></i>
+                        Python
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fas fa-flask"></i>
+                        Flask
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fas fa-camera"></i>
+                        OpenCV
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fas fa-brain"></i>
+                        MediaPipe
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fas fa-code"></i>
+                        JavaScript
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fab fa-html5"></i>
+                        HTML5/CSS3
+                    </div>
+                </div>
+                
+                <h2>How It Works</h2>
+                <p>The ASL Recognition system uses your webcam to capture hand movements. MediaPipe's hand tracking technology identifies key points on your hand, which are then processed by our machine learning classifier to recognize ASL signs. The recognized signs are displayed as text, allowing you to practice and learn in real-time.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 ASL Recognition Platform | Created to help people learn American Sign Language</p>
+    </footer>
+
+    <script>
+        // Active navigation highlight
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLocation = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentLocation) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+        

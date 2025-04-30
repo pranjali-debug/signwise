@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Learning Platform | Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --info: #560bad;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #e9ecef 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .active {
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+        
+        .page-transitions {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .practice-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .practice-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .practice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .practice-banner {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+        
+        .practice-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .practice-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .practice-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        
+        .difficulty {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .difficulty-label {
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+        
+        .difficulty-dots {
+            display: flex;
+            gap: 0.3rem;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+        
+        .dot.active {
+            background-color: var(--primary);
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .practice-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="logo">
+                <i class="fas fa-american-sign-language-interpreting"></i>
+                ASL Learning
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/learn" class="nav-link">Learn</a></li>
+                <li><a href="/practice" class="nav-link active">Practice</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container page-transitions">
+        <header>
+            <h1>Practice Your ASL Skills</h1>
+            <p class="subtitle">Test and improve your sign language abilities with interactive exercises</p>
+        </header>
+        
+        <div class="card">
+            <div class="card-header">Choose Your Practice Mode</div>
+            <div class="card-body">
+                <p>Select from various practice modes below. Each mode focuses on different aspects of American Sign Language to help you master specific skills.</p>
+                <p style="margin-top: 1rem;">Start with beginner exercises and progress as you become more comfortable with signing.</p>
+            </div>
+        </div>
+        
+        <div class="practice-options">
+            <div class="practice-card">
+                <div class="practice-banner">
+                    <i class="fas fa-font"></i>
+                </div>
+                <div class="practice-content">
+                    <h3 class="practice-title">Alphabet Recognition</h3>
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <p class="practice-description">Practice recognizing and signing the ASL alphabet. Great for beginners!</p>
+                    <a href="/" class="btn">Start Practice <i class="fas fa-play"></i></a>
+                </div>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-banner">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <div class="practice-content">
+                    <h3 class="practice-title">Simple Words</h3>
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <p class="practice-description">Learn and practice common words and short phrases in ASL.</p>
+                    <a href="/" class="btn">Start Practice <i class="fas fa-play"></i></a>
+                </div>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-banner">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="practice-content">
+                    <h3 class="practice-title">Conversations</h3>
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                        </div>
+                    </div>
+                    <p class="practice-description">Practice full conversations and improve your fluency in ASL.</p>
+                    <a href="/" class="btn">Start Practice <i class="fas fa-play"></i></a>
+                </div>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-banner">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="practice-content">
+                    <h3 class="practice-title">ASL Games</h3>
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty:</span>
+                        <div class="difficulty-dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <p class="practice-description">Fun games to help you practice ASL in an engaging way.</p>
+                    <a href="/" class="btn">Start Practice <i class="fas fa-play"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 ASL Recognition Platform | Created to help people learn American Sign Language</p>
+    </footer>
+
+    <script>
+        // Active navigation highlight
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLocation = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentLocation) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+        
